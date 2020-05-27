@@ -1,0 +1,96 @@
+﻿@model mvc_project.ViewModels.StudentAttendanceViewModel
+
+@{
+    ViewBag.Title = "ShowFromTo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attendance Review</h2>
+
+@using (Html.BeginForm("ShowFromTo", "Account"))
+{
+    <div class="form-group mb-3">
+        <div class="col-md-3 mb-3">
+
+            @Html.LabelFor(m => m.Student.DeptId)
+            @Html.DropDownListFor(m => m.Student.DeptId, new SelectList(Model.Departments, "DeptId", "DeptName"), "Select Department", new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-3 mb-3">
+            @Html.LabelFor(m => m.From)
+            @Html.TextBoxFor(m => m.From, new { @type = "date", @class = "form-control datepicker" })
+        </div>
+        <div class="col-md-3 mb-3 ">
+
+            @Html.LabelFor(m => m.To)
+            @Html.TextBoxFor(m => m.To, new { @type = "date", @class = "form-control datepicker" })
+        </div>
+        <div class="col-md-3 mb-3">
+            <button type="submit" class="btn btn-primary " style="margin:25px;">Show</button>
+        </div>
+
+
+    </div>
+
+    <br>
+    ////////
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Absent</th>
+                <th>Attend</th>
+                <th>OnTime</th>
+                <th>Late</th>
+                <th>Permission</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var attend in Model.Attendances)
+            {
+                var absent = attend.Count(a => a.Attend == false);
+                int permission = 0;
+
+                foreach (var p in Model.Permission)
+                {
+                    if (p.Key == attend.Key)
+                    {
+                        permission = p.Count(a => a.Status == "accepted");
+                    }
+                }
+
+                <tr>
+                    <td>
+                        @attend.Key
+                    </td>
+
+                    <td>
+                        @{ int num = absent - permission;
+                            if (num <= 0)
+                            {
+                                num = 0;
+                            }
+                        }
+
+                        @num
+
+                    </td>
+                    <td>
+                        @attend.Count(a => a.Attend == true)
+                    </td>
+                    <td>
+                        @attend.Count(a => a.OnTime == true)
+                    </td>
+                    <td>
+                        @attend.Count(a => a.Late == true)
+                    </td>
+
+                    <td>
+                        @permission
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "profile";
+}
+
+<h2>profile</h2>
+<img src="~/images/imgprof.PNG"/>
+<br />
+<h4 style="display:inline-block">ID :</h4> @ViewData["u_id"]
+<br />
+<h4 style="display:inline-block">Name :</h4> @ViewData["u_name"]
+<br />
+<h4 style="display:inline-block">Email :</h4> @ViewData["u_email"]
+<br />
+<h4 style="display:inline-block">Department :</h4> @ViewData["u_dept"]
+<br />
+<button class="btn-default bottom-right"> @Html.ActionLink("View Attendance", "view_attend", "Account")</button>
+
+
+
+
+
+
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Scripts/bootstrap.js"></script>

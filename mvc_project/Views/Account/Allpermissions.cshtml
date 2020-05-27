@@ -1,0 +1,64 @@
+﻿@model IEnumerable<mvc_project.Models.AdminViewModels>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissionNote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissionStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissionID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeptName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissionNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissionStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissionID)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

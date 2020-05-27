@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Recording";
+}
+
+<h2>Recording</h2>
+@Html.DropDownList("dpts")
+@Html.DropDownList("status")
+
+@model List<mvc_project.Models.Attendance>
+<div id="div1">
+    @for (int i = 0; i < Model.Count();)
+    {
+        foreach (var item in Model)
+        {
+            if (ViewBag.state == 1)
+            {
+                <br /><br /> <br />
+                <span style="margin:7px;padding:5px;margin-bottom:5px">
+
+                    @Html.ActionLink(item.User.UserName, "RecordAttnd", "Account", new { id = item.AttId }, new { @class = "btn btn-info btn-lg" })
+
+
+                    @{ i = i + 1;
+                    }
+                </span>
+
+            }
+
+            else
+            {
+                <br /><br /> <br />
+                <span style="margin:7px;padding:5px">
+
+                    @Html.ActionLink(item.User.UserName, "RecordExit", "Account", new { id = item.AttId }, new { @class = "btn btn-info btn-lg" })
+
+
+                    @{ i = i + 1;
+                    }
+                </span>
+            }
+
+        }
+    }
+
+
+</div>
+
+@section scripts{
+    <script>
+            $("#dpts").on("change", a => {
+
+                var id = $("#dpts").val();
+                $("#status").on("change", a => {
+
+                    let st = $("#status").val();
+
+                    $("#div1").load("/Account/navigation?id=" + id + "&state=" + st)
+
+
+                })
+
+
+
+            })
+
+    </script>
+
+}
+

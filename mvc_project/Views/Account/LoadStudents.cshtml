@@ -1,0 +1,53 @@
+﻿@model List<mvc_project.Models.AdminViewModels>
+
+<table class="table" id="mainT">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Accept Permission</th>
+            <th scope="col">Refuse Permission</th>
+        </tr>
+    </thead>
+    @*@for (int i=0; i<Model.Count; i++)*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserID</td>
+            <td>@item.UserName</td>
+            <td>@item.permissionDate</td>
+            <td>@item.permissionNote</td>
+            <td> @Html.CheckBox(@item.permissionID.ToString(), new { @class = "a" }) </td>
+            <td> @Html.CheckBox(@item.permissionID.ToString(), new { @class = "r" }) </td>
+            @*<td> <input type="checkbox" /> </td>*@
+        </tr>
+        <tr id="temp"> </tr>
+    }
+</table>
+@*<div id="temp">
+        here
+    </div>*@
+
+
+<script>
+    $('input[type="checkbox"]').click(function () {
+
+        if ($(this).is(":checked")) {
+            //alert("Checkbox is checked.");
+            //alert($(this).attr('class'));
+
+            var permID = $(this).attr('name');
+            var permStatus = $(this).attr('class');
+            //debugger;
+            $("#temp").load("/Account/permissionResponse?id=" + permID + "&status=" + permStatus);
+            $(this).parent().parent().remove();
+
+        }
+        else if ($(this).is(":not(:checked)")) {
+            alert("Checkbox is unchecked.");
+        }
+    });
+
+</script>

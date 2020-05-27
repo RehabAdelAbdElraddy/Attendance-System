@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "DisplayStudentsStatusInDay";
+}
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+    <h2>DisplayStudentsStatusInDay</h2>
+
+    <form action="/account/DisplayDep" method="post">
+        <p>Select The Department : </p>@Html.DropDownList("department")
+        <label>Day: </label>
+        <input type="date" id="Day" name="Day">
+        <br />
+        <input type="submit" id="btn" value="Show">
+    </form>
+    <div id="div1">
+
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        //$("#btn").on("click", a => {
+        //    alert($("#department").val());
+        //})
+        //$("#div1").load("/Account/DisplayStudentsStatusInDay/")
+        //$(document).ready(function () {
+        //    $("#btn").click(function () {
+        //        var id = $("#department").val();
+        //        var date = $("#Day").val();
+        //        $("#div1").load("/account/DisplayDep/"+id);
+            
+        //    });
+
+        //});
+    </script>
+
+
+</body>
+</html>

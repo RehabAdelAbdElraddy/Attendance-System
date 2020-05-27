@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "StudentsPermissions";
+}
+
+<h2 style="display:inline-block">Students Permissions </h2>
+<span style="padding:5px"> <a id="view">view all permissions</a> </span> <br />
+
+@*<input type="date" class="form-control" id="dateInput" name="date">*@
+
+
+@Html.Label("Departments")
+@Html.DropDownList("departments", (SelectList) ViewBag.departments, "-- select a department --",
+    new { @class = "btn btn-secondary  dropdown-toggle" })
+
+
+@*<div id="div1"></div>*@
+<table class="table" id="mainT">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Accept Permission</th>
+            <th scope="col">Refuse Permission</th>
+        </tr>
+    </thead>
+    <tbody id="tBody">
+        <tr>
+            <td>
+                <h3>Choose a department</h3>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+@section scripts{
+
+    <script>
+
+        //$("#dateInput").on("change", a => {
+        //    alert($("#dateInput").val());
+        //});
+
+        //function a() {
+        //    var deptId = $("#departments").val();
+        //    var date = $("#dateInput").val();
+        //    //alert($("#departments").val());
+        //    $("#div1").load("/Account/LoadStudents/" + deptId + "/" + date);
+        //}
+
+        $("#departments").on("change", a => {
+            var deptId = $("#departments").val();
+            //var date = $("#dateInput").val();
+            //alert($("#departments").val());
+            $("#mainT").load("/Account/LoadStudents/" + deptId);
+        })
+
+        $("#view").on("click", a => {
+            $("#mainT").load("/Account/Allpermissions");
+        })
+
+                //$("#dateInput").on("change", a => {
+                //    var deptId = $("#departments").val();
+                //    var date = $("#dateInput").val();
+                //    //alert($("#departments").val());
+                //    $("#tBody").load("/Account/LoadStudents/" + deptId + "/" + date);
+                //})
+
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Perm";
+}
+
+<h2>Permission</h2>
+<hr />
+
+<form method="post" action="/account/permupdate">
+
+    <h4> Date of permission </h4> <input type="date" name="datee" />
+    <h4> Reason of permission </h4>
+    <input type="text" style="height:300px;width:200px" name="res" />
+    <br />
+
+    <input type="submit" value="Submit" class="btn-danger" />
+</form>

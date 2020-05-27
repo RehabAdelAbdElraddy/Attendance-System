@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Attendance";
+}
+
+<h2>Attendance</h2>
+
+<table class="table-striped table-bordered text-center ">
+    <tr>
+        <td>Date</td>
+        <td>Attendance Time</td>
+        <td>Left Time</td>
+    </tr>
+    @foreach (var item in @ViewBag.attends)
+    {
+        <tr>
+            <td>@item.AttDate</td>
+            <td>@item.TimeAttend</td>
+            <td>@item.TimeLeft</td>
+
+        </tr>
+    }
+</table>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>

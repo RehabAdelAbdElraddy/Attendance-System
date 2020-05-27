@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "security";
+}
+
+<h2>security</h2>
+
+@model List<mvc_project.Models.Attendance>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.DropDownList("dpts")
+@Html.DropDownList("status")
+@Html.Partial("showStd", ViewBag.stdinDep as List<mvc_project.Models.Attendance>)
+
+
+
+@section scripts{
+    <script>
+            $("#dpts").on("change", a => {
+
+                var id = $("#dpts").val();
+                $("#status").on("change", a => {
+
+                    let st = $("#status").val();
+
+                    $("#div1").load("/Account/navigation?id=" + id + "&state=" + st)
+
+
+                })
+
+
+
+            })
+
+    </script>
+
+}
